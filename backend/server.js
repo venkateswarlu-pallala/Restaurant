@@ -7,7 +7,18 @@ dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors());
+
+// Allowed origins
+const allowedOrigins = [
+  'http://localhost:3000',                 // Local React dev
+  'https://your-site.netlify.app'          // Your Netlify deployed site
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Define Routes
